@@ -66,8 +66,9 @@ function populateHours(timeData, conditionData, tempData) {
     
     if (hoursAbbr == 0) {
         hoursAbbr = '12AM'
-    } else if (hoursAbbr > 12) {
+    } else if (hoursAbbr >= 12) {
         hoursAbbr -= 12;
+        hoursAbbr == 0 ? hoursAbbr = 12 : hoursAbbr;
         hoursAbbr += 'PM'
     } else {
         hoursAbbr += 'AM'

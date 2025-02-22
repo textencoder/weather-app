@@ -76,15 +76,24 @@ body {
 }
 
 .hour {
-    min-width: 70px;
+    min-width: 60px;
     height: 90%;
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
     place-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    scroll-behavior: smooth;
 
     img {
       width: 25px;
     }
+}
+
+.hour:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+  
 }
 
 .time {
