@@ -13,21 +13,18 @@ async function getData(location) {
     const key = 'TB5Y9LTDV3UCDBD8CDYVFNN2B';
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=${key}&contentType=json`;
 
-    const response = await fetch(url, {mode: 'cors'})
+    const response = await fetch(url, {mode: 'cors'});
 
-    const data = await response.json()
-
-    //console.log(data);
+    const data = await response.json();
 
     populateCurrentTemp(data);
     populateHourlyData(data);
+    populateDayData(data);
 }
 
 //getData('chicago')
 
 function populateCurrentTemp(data) {
-    console.log(data)
-
     currentTemp.textContent = data.currentConditions.temp.toFixed(0) + '°';
     currentCondition.textContent = data.currentConditions.conditions;
     highTemp.textContent = 'H:' + data.days[0].tempmax.toFixed(0) + '°';
@@ -85,4 +82,55 @@ function populateHours(timeData, conditionData, tempData) {
 
     container.append(time, condition, temp);
     document.querySelector('#hours').append(container)
+}
+
+function populateDayData(data) {
+    console.log(data);
+
+    for (let i=0; i<10; i++) {
+        populateDays(data.days[i].datetime, data.days[i].icon, data.days[i].tempmin, data.days[i].tempmax)
+    }
+
+    // for (const day of data.days) {
+    //     populateDays(day.datetime, day.icon, day.tempmin, day.tempmax)
+    // }
+}
+
+const dayObj = {
+    0: 'Sun',
+    1: 'Mon',
+    2: 'Tue',
+    3: 'Wed',
+    4: 'Thu',
+    5: 'Fri',
+    6: 'Sat',
+}
+
+function populateDays(dayData, conditionData, dayLowData, dayHighData) {
+    const day = document.createElement('div');
+    day.classList.add('day');
+
+    const dayOfWeek = document.createElement('p');
+    dayOfWeek.classList.add('day-of-week');
+    const parsedDay = new Date(dayData).getUTCDay();
+    dayOfWeek.textContent = dayObj[parsedDay];
+
+    const condition = document.createElement('img');
+    condition.classList.add('day-condition');
+    condition.src = `./assets/${conditionData}.svg`;
+
+    const dayLow = document.createElement('p');
+    dayLow.classList.add('day-low');
+    dayLow.textContent = dayLowData.toFixed(0) + '°';
+
+    const barGraph = document.createElement('bar-graph');
+    barGraph.classList.add('bar-graph');
+
+    const dayHigh = document.createElement('p');
+    dayHigh.classList.add('day-high');
+    dayHigh.textContent = dayHighData.toFixed(0) + '°';
+
+    day.append(dayOfWeek, condition, dayLow, barGraph, dayHigh);
+
+    document.querySelector('#ten-day-forecast').append(day);
 }

@@ -6,6 +6,7 @@
 html {
   width: 100vw;
   height: 100dvh;
+  max-width: 100%;
   display: grid;
   place-items: center;
   cursor: default;
@@ -17,32 +18,40 @@ body {
   max-width: 400px;
   background-color: rgb(0, 140, 187);
   display: grid;
-  grid-template-rows: 2fr 1.5fr 4fr;
+  grid-template-rows: 2.5fr 2fr 7fr;
   color: white;
+  gap: 10px;
 }
 
 #current-info {
   display: grid;
   place-items: center;
   padding: 10px 0;
-  max-height: 175px; 
+  max-height: 175px;
 }
 
 #location {
-    font-size: 1.5rem;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
 }
 
 #current-temp {
-    font-size: 4rem;
-    margin-left: 15px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+  font-size: 4rem;
+  margin-left: 15px;
+  font-weight: 200;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
 }
 
 #high-low {
-    display: flex;
-    width: 30%;
-    justify-content: space-evenly;
+  display: flex;
+  width: 30%;
+  justify-content: space-evenly;
+}
+
+.elza-extra-light {
+  font-family: elza, sans-serif;
+  font-weight: 200;
+  font-style: normal;
 }
 
 .elza-light {
@@ -51,49 +60,61 @@ body {
   font-style: normal;
 }
 
-#hourly-data {
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.25);
-    display: grid;
-    grid-template-rows: 1fr 4fr;
-    
-    border-radius: 10px;
+.elza-regular {
+  font-family: elza, sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-#daily-condition {
-    display: grid;
-    align-self: start;
-    font-size: 0.9rem;
-    padding: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+.elza-medium {
+  font-family: elza, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+#hourly-data {
+  background-color: rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  border-radius: 10px;
+  padding: 10px;
+  gap: 10px;
+}
+
+#daily-condition,
+#ten-day-forecast label {
+  display: grid;
+  align-self: start;
+  font-size: 0.9rem;
+  padding: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 #hours {
-    display: flex;
-    overflow-x: scroll;
-    scrollbar-width: none;
-    align-items: center;
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  align-items: center;
 }
 
 .hour {
-    min-width: 60px;
-    height: 90%;
-    display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-    place-items: center;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 5px;
-    scroll-behavior: smooth;
+  min-width: 60px;
+  height: 90%;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  place-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  scroll-behavior: smooth;
 
-    img {
-      width: 25px;
-    }
+  img {
+    width: 25px;
+  }
 }
 
 .hour:hover {
   background-color: rgba(0, 0, 0, 0.25);
-  
 }
 
 .time {
@@ -102,4 +123,51 @@ body {
 
 .hour-temp {
   font-size: 1.1rem;
+}
+
+#ten-day-forecast {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 0.75fr repeat(10, 1fr);
+
+  label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.day {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 3fr 1fr;
+  place-items: center;
+  padding: 10px;
+
+  img {
+    width: 25px;
+  }
+}
+
+.day:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.day-of-week {
+  font-weight: 400;
+  font-size: 1.1rem;
+  justify-self: start;
+}
+
+.day-condition {
+  justify-self: start;
+}
+
+.day-low {
+  color: rgba(255, 255, 255, 0.75);
 }

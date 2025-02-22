@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="https://use.typekit.net/nnk5pfq.css">
-    <link rel="stylesheet" href="styles.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="stylesheet" href="https://use.typekit.net/nnk5pfq.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="current-info" class="elza-light">
-        <p id="location"></p>
-        <p id="current-temp"></p>
-        <p id="current-condition"></p>
-        <div id="high-low">
-            <p id="high-temp"></p>
-            <p id="low-temp"></p>
-        </div>
+      <p id="location"></p>
+      <p id="current-temp"></p>
+      <p id="current-condition"></p>
+      <div id="high-low">
+        <p id="high-temp"></p>
+        <p id="low-temp"></p>
+      </div>
     </div>
 
     <div id="hourly-data" class="elza-light">
-        <p id="daily-condition"></p>
-        <div id="hours">
-            <!-- <div class="hour">
+      <p id="daily-condition"></p>
+      <div id="hours">
+        <!-- <div class="hour">
                 <p class="time"></p>
                 <div class="condition"></div>
                 <p class="hour-temp"></p>
             </div> -->
-        </div>
+      </div>
     </div>
-    
+
+    <div id="ten-day-forecast" class="elza-light">
+      <label>
+        <img src="./assets/calendar-month.svg" alt="" width="18" />
+        10-DAY
+        FORECAST
+      </label>
+
+      <!-- <div class="day">
+        <p class="day-of-week"></p>
+        <img src="" alt="" class="day-condition">
+        <p class="day-low"></p>
+        <div class="bar-graph"></div>
+        <p class="day-high"></p>
+      </div> -->
+    </div>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
