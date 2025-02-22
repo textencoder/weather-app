@@ -8,7 +8,6 @@ html {
   height: 100dvh;
   display: grid;
   place-items: center;
-  font-family: sans-serif;
   cursor: default;
 }
 
@@ -18,14 +17,15 @@ body {
   max-width: 400px;
   background-color: rgb(0, 140, 187);
   display: grid;
-  grid-template-rows: 3fr 2fr 4fr;
+  grid-template-rows: 2fr 1.5fr 4fr;
   color: white;
 }
 
 #current-info {
   display: grid;
   place-items: center;
-  padding: 10px 0; 
+  padding: 10px 0;
+  max-height: 175px; 
 }
 
 #location {
@@ -62,9 +62,9 @@ body {
 
 #daily-condition {
     display: grid;
-    align-self: center;
+    align-self: start;
     font-size: 0.9rem;
-    padding: 0 5px;
+    padding: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
@@ -72,14 +72,25 @@ body {
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none;
-    gap: 10px;
+    align-items: center;
 }
 
 .hour {
-    width: 250px;
+    min-width: 70px;
     height: 90%;
-    border: 1px solid white;
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
     place-items: center;
+
+    img {
+      width: 25px;
+    }
+}
+
+.time {
+  font-size: 0.9rem;
+}
+
+.hour-temp {
+  font-size: 1.1rem;
 }

@@ -45,11 +45,14 @@ function populateHourlyData(data) {
     dailyCondition.textContent = data.days[0].description;
     
     for (const [key,value] of Object.entries(data.days[0].hours)) {
-        if (Number(key) > new Date().getHours()) {
-            populateHours(value.datetime,value.conditions,value.temp.toFixed(0));
+        if (Number(key) >= new Date().getHours()) {
+            populateHours(value.datetime,value.icon,value.temp.toFixed(0));
         }
-        
-        //return;
+    }
+    for (const [key,value] of Object.entries(data.days[1].hours)) {
+        //if (Number(key) >= new Date().getHours()) {
+            populateHours(value.datetime,value.icon,value.temp.toFixed(0));
+        //}
     }
 }
 
@@ -59,14 +62,21 @@ function populateHours(timeData, conditionData, tempData) {
 
     const time = document.createElement('p');
     time.classList.add('time');
-    if (timeData > 12) {
-        timeData -= 12;
+    let hoursAbbr = Number(timeData[0] + timeData[1])
+    
+    if (hoursAbbr == 0) {
+        hoursAbbr = '12AM'
+    } else if (hoursAbbr > 12) {
+        hoursAbbr -= 12;
+        hoursAbbr += 'PM'
+    } else {
+        hoursAbbr += 'AM'
     }
-    time.textContent = timeData[0] + timeData[1];
+    time.textContent = hoursAbbr;
 
-    const condition = document.createElement('div');
+    const condition = document.createElement('img');
     condition.classList.add('condition');
-    condition.textContent = conditionData;
+    condition.src = `./assets/${conditionData}.svg`;
 
     const temp = document.createElement('p');
     temp.classList.add('hour-temp');
