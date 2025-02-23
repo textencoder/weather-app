@@ -9,6 +9,7 @@ html {
   display: grid;
   place-items: center;
   cursor: default;
+  padding: 10px 0;
 }
 
 body {
@@ -179,33 +180,23 @@ body {
   border-radius: 20px;
 }
 
-.empty {
-  height: 90px;
-}
-
-footer {
-  position: fixed;
-  bottom: 10px;
+header {
   width: 400px;
-  height: 10vh;
+  height: 7.5vh;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 7px;
   background-color: rgba(0, 0, 0, 0.25);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
-  backdrop-filter: blur(10px);
-  
 
   input {
-    width: 67%;
-    height: 50%;
+    width: 70%;
+    height: 55%;
     border-radius: 50px;
     border: none;
     text-align: center;
     font-size: 1.1rem;
-    box-shadow: 0 0 5px rgb(0, 0, 0, 0.25);
   }
 
   button {
