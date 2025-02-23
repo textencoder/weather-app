@@ -31,6 +31,9 @@ async function getData(location) {
   populateHourlyData(data);
   populateDayData(data);
 
+  populateFeelsLike(data);
+  populateUvIndex(data);
+
   console.log(data);
 }
 
@@ -164,6 +167,55 @@ function populateDays(dayData, conditionData, dayLowData, dayHighData) {
   document.querySelector("#ten-day-forecast").append(day);
 }
 
+function populateFeelsLike(data) {
+  const label = document.createElement('p');
+  const labelIcon = document.createElement('img');
+  labelIcon.src = "/assets/thermometer.svg";
+  labelIcon.style.width = "18px";
+  label.append(labelIcon);
+  label.innerHTML += "FEELS LIKE";
+
+  const feelsLike = document.createElement('p');
+  feelsLike.textContent = data.currentConditions.feelslike.toFixed(0) + "°";
+
+  const actual = document.createElement('p');
+  actual.textContent = "Actual: " + data.currentConditions.temp.toFixed(0) + "°";
+
+  const barGraph = document.createElement('span');
+  barGraph.classList.add('bar-graph');
+
+  const description = document.createElement('p');
+  description.textContent = "Wind is making it feel colder.";
+
+  document.querySelector('#feels-like').append(label, feelsLike, actual, barGraph, description);
+}
+
+function populateUvIndex(data) {
+  const label = document.createElement('p');
+  const labelIcon = document.createElement('img');
+  labelIcon.src = "/assets/sunny.svg";
+  labelIcon.style.width = "18px";
+  label.append(labelIcon);
+  label.innerHTML += "UV INDEX";
+
+  const index = document.createElement('p');
+  index.textContent = data.currentConditions.uvindex;
+
+  const level = document.createElement('p');
+  level.textContent = "{index level}";
+
+  const barGraph = document.createElement('span');
+  barGraph.classList.add('bar-graph');
+
+  const description = document.createElement('p');
+  description.textContent = "Use sun protection until 2PM.";
+
+  document.querySelector('#uv-index').append(label, index, level, barGraph, description);
+}
+
+
+
+//submit listeners
 document.querySelector("#submit-btn").addEventListener("click", () => {
   getData(document.querySelector("input").value);
   document.querySelector("input").value = "";
@@ -178,6 +230,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+//geolocation
 function success(pos) {
   const crd = pos.coords;
   getCity(crd.latitude, crd.longitude);
