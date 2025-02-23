@@ -17,8 +17,8 @@ body {
   height: 100%;
   max-width: 400px;
   background-color: rgb(0, 140, 187);
-  display: grid;
-  grid-template-rows: 2.5fr 2fr 7fr;
+  display: flex;
+  flex-direction: column;
   color: white;
   gap: 10px;
 }
@@ -27,7 +27,7 @@ body {
   display: grid;
   place-items: center;
   padding: 10px 0;
-  max-height: 175px;
+  min-height: 175px;
 }
 
 #location {
@@ -79,6 +79,7 @@ body {
   border-radius: 10px;
   padding: 10px;
   gap: 10px;
+  max-height: 175px;
 }
 
 #daily-condition,
@@ -170,4 +171,47 @@ body {
 
 .day-low {
   color: rgba(255, 255, 255, 0.75);
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 400px;
+  height: 5vh;
+  display: flex;
+  justify-content: space-evenly;
+
+  input {
+    width: 67%;
+    height: 100%;
+    border-radius: 50px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    border: none;
+    text-align: center;
+    font-size: 1.25rem;
+  }
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+
+  button:nth-of-type(1) {
+    left: 5px;
+  }
+
+  button:nth-of-type(2) {
+    right: 5px;
+  }
+
+  button:hover {
+    background-color: rgb(200, 200, 200);
+  }
 }

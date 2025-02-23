@@ -30,6 +30,7 @@ function populateCurrentTemp(data) {
     highTemp.textContent = 'H:' + data.days[0].tempmax.toFixed(0) + '°';
     lowTemp.textContent = 'L:' + data.days[0].tempmin.toFixed(0) + '°';
 
+    currentLocation.textContent = '';
     for (const char of data.resolvedAddress) {
         if (char == ',') {
             return;
@@ -39,6 +40,8 @@ function populateCurrentTemp(data) {
 }
 
 function populateHourlyData(data) {
+    document.querySelector('#hours').innerHTML = '';
+
     dailyCondition.textContent = data.days[0].description;
     
     for (const [key,value] of Object.entries(data.days[0].hours)) {
@@ -85,7 +88,16 @@ function populateHours(timeData, conditionData, tempData) {
 }
 
 function populateDayData(data) {
-    console.log(data);
+    document.querySelector('#ten-day-forecast').innerHTML = '';
+
+    const label = document.createElement('label');
+    const calendarIcon = document.createElement('img');
+    calendarIcon.src = "./assets/calendar-month.svg";
+    calendarIcon.style.width = "18px"
+    label.append(calendarIcon)
+    label.innerHTML += '10 DAY FORECAST';
+
+    document.querySelector('#ten-day-forecast').append(label)
 
     for (let i=0; i<10; i++) {
         populateDays(data.days[i].datetime, data.days[i].icon, data.days[i].tempmin, data.days[i].tempmax)
@@ -133,4 +145,34 @@ function populateDays(dayData, conditionData, dayLowData, dayHighData) {
     day.append(dayOfWeek, condition, dayLow, barGraph, dayHigh);
 
     document.querySelector('#ten-day-forecast').append(day);
+}
+
+document.querySelector('#submit-btn').addEventListener('click', () => {
+    getData(document.querySelector('input').value);
+    document.querySelector('input').value = '';
+    document.querySelector('input').blur();
+})
+
+document.addEventListener('keydown', (e) => {
+    if (e.key == 'Enter' || e.key == 13) {
+        getData(document.querySelector('input').value);
+        document.querySelector('input').value = '';
+        document.querySelector('input').blur();
+    }
+})
+
+function success(pos) {
+    const crd = pos.coords;
+    getCity(crd.latitude, crd.longitude);
+  }
+
+document.querySelector('#location-btn').addEventListener('click', () => {
+    navigator.geolocation.getCurrentPosition(success)
+})
+
+async function getCity(latitude, longitude) {
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
+    const response = await fetch(url);
+    const data = await response.json();
+    getData(data.address.town)
 }
