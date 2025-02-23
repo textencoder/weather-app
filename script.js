@@ -33,6 +33,7 @@ async function getData(location) {
 
   populateFeelsLike(data);
   populateUvIndex(data);
+  populateWind(data);
 
   console.log(data);
 }
@@ -168,6 +169,8 @@ function populateDays(dayData, conditionData, dayLowData, dayHighData) {
 }
 
 function populateFeelsLike(data) {
+  document.querySelector('#feels-like').innerHTML = '';
+
   const label = document.createElement('p');
   const labelIcon = document.createElement('img');
   labelIcon.src = "/assets/thermometer.svg";
@@ -191,6 +194,8 @@ function populateFeelsLike(data) {
 }
 
 function populateUvIndex(data) {
+  document.querySelector('#uv-index').innerHTML = '';
+
   const label = document.createElement('p');
   const labelIcon = document.createElement('img');
   labelIcon.src = "/assets/sunny.svg";
@@ -213,7 +218,21 @@ function populateUvIndex(data) {
   document.querySelector('#uv-index').append(label, index, level, barGraph, description);
 }
 
+function populateWind(data) {
+  document.querySelector('#wind-speed').textContent = '';
+  document.querySelector('#wind-gusts').textContent = '';
+  document.querySelector('#wind-direction').textContent = '';
 
+  document.querySelector('#wind-speed').textContent = data.days[0].windspeed.toFixed(0) + " mph";
+  document.querySelector('#wind-gusts').textContent = data.days[0].windgust.toFixed(0) + " mph";
+  document.querySelector('#wind-direction').textContent = data.days[0].winddir.toFixed(0) + "°";
+
+  document.querySelector('#compass').textContent = 
+    Number(data.days[0].winddir.toFixed(0)) > 315 && Number(data.days[0].winddir.toFixed(0)) < 45 ? "N"
+    : Number(data.days[0].winddir.toFixed(0)) > 225 && Number(data.days[0].winddir.toFixed(0)) < 315 ? "W"
+    : Number(data.days[0].winddir.toFixed(0)) > 135 && Number(data.days[0].winddir.toFixed(0)) < 225 ? "S"
+    : "E";
+}
 
 //submit listeners
 document.querySelector("#submit-btn").addEventListener("click", () => {

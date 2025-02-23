@@ -63,21 +63,27 @@
     <div class="two-square-block elza-light">
 
       <div id="feels-like">
-        <!-- <p><img src="/assets/thermometer.svg" alt="" width="18"> FEELS LIKE</p>
-        <p>29°</p>
-        <p>Actual: 40°</p>
-        <span class="bar-graph"></span>
-        <p>Wind is making it feel colder.</p> -->
       </div>
 
       <div id="uv-index">
-        <!-- <p><img src="/assets/sunny.svg" alt="" width="18"> UV INDEX</p>
-        <p>3</p>
-        <p>Moderate</p>
-        <span class="bar-graph"></span>
-        <p>Use sun protection until 2PM.</p> -->
       </div>
 
+    </div>
+
+    <div id="wind" class="elza-light">
+      <label><img src="/assets/windy.svg" alt="" width="18"> WIND</label>
+
+      <div>
+        <span><p>Wind</p> <p id="wind-speed"></p></span>
+        <hr>
+        <span><p>Gusts</p> <p id="wind-gusts"></p></span>
+        <hr>
+        <span><p>Direction</p> <p id="wind-direction"></p></span>
+      </div>
+
+      <div id="compass">
+        {D}
+      </div>
     </div>
 
     <script src="script.js"></script>
