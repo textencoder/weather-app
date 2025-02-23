@@ -188,7 +188,7 @@ function populateFeelsLike(data) {
   barGraph.classList.add('bar-graph');
 
   const description = document.createElement('p');
-  description.textContent = "Wind is making it feel colder.";
+  description.textContent = "{advisory}";
 
   document.querySelector('#feels-like').append(label, feelsLike, actual, barGraph, description);
 }
@@ -213,7 +213,7 @@ function populateUvIndex(data) {
   barGraph.classList.add('bar-graph');
 
   const description = document.createElement('p');
-  description.textContent = "Use sun protection until 2PM.";
+  description.textContent = "{advisory}";
 
   document.querySelector('#uv-index').append(label, index, level, barGraph, description);
 }
@@ -228,10 +228,11 @@ function populateWind(data) {
   document.querySelector('#wind-direction').textContent = data.days[0].winddir.toFixed(0) + "°";
 
   document.querySelector('#compass').textContent = 
-    Number(data.days[0].winddir.toFixed(0)) > 315 && Number(data.days[0].winddir.toFixed(0)) < 45 ? "N"
+    Number(data.days[0].winddir.toFixed(0)) > 315 || Number(data.days[0].winddir.toFixed(0)) < 45 ? "N"
     : Number(data.days[0].winddir.toFixed(0)) > 225 && Number(data.days[0].winddir.toFixed(0)) < 315 ? "W"
     : Number(data.days[0].winddir.toFixed(0)) > 135 && Number(data.days[0].winddir.toFixed(0)) < 225 ? "S"
-    : "E";
+    : Number(data.days[0].winddir.toFixed(0)) > 45 && Number(data.days[0].winddir.toFixed(0)) < 135 ? "E"
+    : null;
 }
 
 //submit listeners
