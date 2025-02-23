@@ -60,7 +60,7 @@
       </div> -->
     </div>
 
-    <div class="two-square-block elza-light">
+    <div class="two-square-block elza-light feels-uv">
 
       <div id="feels-like">
       </div>
@@ -71,7 +71,7 @@
     </div>
 
     <div id="wind" class="elza-light">
-      <label><img src="/assets/windy.svg" alt="" width="18"> WIND</label>
+      <p><img src="/assets/windy.svg" alt="" width="18"> WIND</p>
 
       <div>
         <span><p>Wind</p> <p id="wind-speed"></p></span>
@@ -84,6 +84,40 @@
       <div id="compass">
         {D}
       </div>
+    </div>
+
+    <div class="two-square-block elza-light">
+
+      <div id="sun-phase">
+        <p><img src="/assets/weather-sunset-down.svg" alt="" width="18"> SUNSET</p>
+        <p id="sun-time-current"></p>
+        <span class="sun-diagram"></span>
+        <p id="sun-time-next"></p>
+      </div>
+
+      <div id="precipitation">
+        <p><img src="/assets/water.svg" alt="" width="18"> PRECIPITATION</p>
+        <p id="precip-amount"></p>
+        <p>Today</p>
+        <p id="next-precip"></p>
+      </div>
+
+    </div>
+
+    <div class="two-square-block elza-light">
+
+      <div id="visibility">
+        <p><img src="/assets/eye.svg" alt="" width="18"> VISIBILITY</p>
+        <p id="current-vis"></p>
+        <p id="vis-description"></p>
+      </div>
+
+      <div id="humidity">
+        <p><img src="/assets/air-filter.svg" alt="" width="18"> HUMIDITY</p>
+        <p id="current-humidity"></p>
+        <p id="dew-point"></p>
+      </div>
+
     </div>
 
     <script src="script.js"></script>

@@ -35,6 +35,12 @@ async function getData(location) {
   populateUvIndex(data);
   populateWind(data);
 
+  populateSun(data);
+  populatePrecipitation(data);
+
+  populateVisibility(data);
+  populateHumidity(data);
+
   console.log(data);
 }
 
@@ -233,6 +239,35 @@ function populateWind(data) {
     : Number(data.days[0].winddir.toFixed(0)) > 135 && Number(data.days[0].winddir.toFixed(0)) < 225 ? "S"
     : Number(data.days[0].winddir.toFixed(0)) > 45 && Number(data.days[0].winddir.toFixed(0)) < 135 ? "E"
     : null;
+}
+
+function populateSun(data) {
+  const pmTime = data.currentConditions.sunset.split(':');
+  pmTime[0] -= 12;
+  pmTime.splice(2, 1); 
+  document.querySelector('#sun-time-current').textContent = pmTime.join(':') + "PM";
+
+  const amTime = data.currentConditions.sunrise.split(':');
+  amTime.splice(2, 1);
+  document.querySelector('#sun-time-next').textContent = "Sunrise: " + amTime.join(':') + "AM";
+}
+
+function populatePrecipitation(data) {
+  document.querySelector('#precip-amount').textContent = data.currentConditions.precip + '"';
+
+  document.querySelector('#next-precip').textContent = "{next precipitation}"
+}
+
+function populateVisibility(data) {
+  document.querySelector('#current-vis').textContent = Math.round(data.currentConditions.visibility) + "mi";
+
+  document.querySelector('#vis-description').textContent = "{description}"
+}
+
+function populateHumidity(data) {
+  document.querySelector('#current-humidity').textContent = Math.round(data.currentConditions.humidity) + "%";
+
+  document.querySelector('#dew-point').textContent = "The dew point is " + Math.round(data.currentConditions.dew) + "°" + " right now.";
 }
 
 //submit listeners
