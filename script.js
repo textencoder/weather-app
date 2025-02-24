@@ -189,9 +189,13 @@ function populateFeelsLike(data) {
 
   const actual = document.createElement('p');
   actual.textContent = "Actual: " + data.currentConditions.temp.toFixed(0) + "°";
+  if (data.currentConditions.temp.toFixed(0) == data.currentConditions.feelslike.toFixed(0)) {
+    actual.style.visibility = "hidden";
+  }
 
   const barGraph = document.createElement('span');
   barGraph.classList.add('bar-graph');
+  barGraph.style.visibility = "hidden"
 
   const description = document.createElement('p');
   description.textContent = "{advisory}";
@@ -209,14 +213,20 @@ function populateUvIndex(data) {
   label.append(labelIcon);
   label.innerHTML += "UV INDEX";
 
+  const uvIndex = data.currentConditions.uvindex;
   const index = document.createElement('p');
-  index.textContent = data.currentConditions.uvindex;
+  index.textContent = uvIndex;
 
   const level = document.createElement('p');
-  level.textContent = "{index level}";
+  level.textContent = 
+    uvIndex <= 2 ? "Low"
+    : uvIndex >= 3 && uvIndex <= 5 ? "Moderate"
+    : uvIndex == 6 || uvIndex == 7 ? "High"
+    : uvIndex >= 8 && uvIndex <= 10 ? "Very High"
+    : "Extreme";
 
   const barGraph = document.createElement('span');
-  barGraph.classList.add('bar-graph');
+  barGraph.classList.add('bar-graph', "full-gradient");
 
   const description = document.createElement('p');
   description.textContent = "{advisory}";
@@ -235,9 +245,9 @@ function populateWind(data) {
 
   document.querySelector('#compass').textContent = 
     Number(data.days[0].winddir.toFixed(0)) > 315 || Number(data.days[0].winddir.toFixed(0)) < 45 ? "N"
-    : Number(data.days[0].winddir.toFixed(0)) > 225 && Number(data.days[0].winddir.toFixed(0)) < 315 ? "W"
-    : Number(data.days[0].winddir.toFixed(0)) > 135 && Number(data.days[0].winddir.toFixed(0)) < 225 ? "S"
-    : Number(data.days[0].winddir.toFixed(0)) > 45 && Number(data.days[0].winddir.toFixed(0)) < 135 ? "E"
+    : Number(data.days[0].winddir.toFixed(0)) >= 225 && Number(data.days[0].winddir.toFixed(0)) < 315 ? "W"
+    : Number(data.days[0].winddir.toFixed(0)) >= 135 && Number(data.days[0].winddir.toFixed(0)) < 225 ? "S"
+    : Number(data.days[0].winddir.toFixed(0)) >= 45 && Number(data.days[0].winddir.toFixed(0)) < 135 ? "E"
     : null;
 }
 

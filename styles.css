@@ -177,7 +177,7 @@ body {
 
 .bar-graph {
   background-color: rgba(255, 255, 255, 0.25);
-  height: 15%;
+  height: 4px;
   width: 90%;
   border-radius: 20px;
 }
@@ -393,10 +393,14 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    border-radius: 10px;
   }
 }
 
 footer:hover {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.full-gradient {
+  background: linear-gradient(90deg, green, yellow, red, fuchsia);
 }
