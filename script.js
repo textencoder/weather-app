@@ -179,7 +179,7 @@ function populateFeelsLike(data) {
 
   const label = document.createElement('p');
   const labelIcon = document.createElement('img');
-  labelIcon.src = "/assets/thermometer.svg";
+  labelIcon.src = "./assets/thermometer.svg";
   labelIcon.style.width = "18px";
   label.append(labelIcon);
   label.innerHTML += "FEELS LIKE";
@@ -208,7 +208,7 @@ function populateUvIndex(data) {
 
   const label = document.createElement('p');
   const labelIcon = document.createElement('img');
-  labelIcon.src = "/assets/sunny-label.svg";
+  labelIcon.src = "./assets/sunny-label.svg";
   labelIcon.style.width = "18px";
   label.append(labelIcon);
   label.innerHTML += "UV INDEX";
