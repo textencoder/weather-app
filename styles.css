@@ -36,8 +36,8 @@ body {
 }
 
 #current-temp {
-  font-size: 4rem;
-  margin-left: 15px;
+  font-size: 5rem;
+  margin-left: 13px;
   font-weight: 200;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
 }
@@ -183,12 +183,12 @@ body {
 }
 
 header {
-  width: 400px;
+  width: 100%;
   height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 7px;
+  gap: 5px;
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 
@@ -403,4 +403,10 @@ footer:hover {
 
 .full-gradient {
   background: linear-gradient(90deg, green, yellow, red, fuchsia);
+}
+
+@media (max-width: 500px) {
+  body {
+     width: calc(100% - 35px);
+  }
 }
