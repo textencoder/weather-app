@@ -105,18 +105,12 @@ body {
   grid-template-rows: 1fr 2fr 1fr;
   place-items: center;
   border-radius: 5px;
-  cursor: pointer;
   padding: 5px;
   scroll-behavior: smooth;
-  transition: background-color 0.3s ease;
 
   img {
     width: 25px;
   }
-}
-
-.hour:hover {
-  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .time {
@@ -148,17 +142,10 @@ body {
   grid-template-columns: 2fr 2fr 1fr 3fr 1fr;
   place-items: center;
   padding: 10px;
-  transition: background-color 0.3s ease;
 
   img {
     width: 25px;
   }
-}
-
-.day:hover {
-  background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .day-of-week {
